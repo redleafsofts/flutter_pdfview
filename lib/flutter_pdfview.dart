@@ -39,6 +39,7 @@ class PDFView extends StatefulWidget {
     this.defaultPage = 0,
     this.fitPolicy = FitPolicy.WIDTH,
     this.preventLinkNavigation = false,
+    this.scrollHandle = true,
   })
       : assert(filePath != null || pdfData != null),
         super(key: key);
@@ -80,6 +81,7 @@ class PDFView extends StatefulWidget {
   final FitPolicy fitPolicy;
   final bool fitEachPage;
   final bool preventLinkNavigation;
+  final bool scrollHandle;
 }
 
 class _PDFViewState extends State<PDFView> {
@@ -188,7 +190,8 @@ class _PDFViewSettings {
     this.defaultPage,
     this.fitPolicy,
     this.fitEachPage,
-    this.preventLinkNavigation});
+    this.preventLinkNavigation,
+    this.scrollHandle});
 
   static _PDFViewSettings fromWidget(PDFView widget) {
     return _PDFViewSettings(
@@ -201,7 +204,8 @@ class _PDFViewSettings {
         pageSnap: widget.pageSnap,
         defaultPage: widget.defaultPage,
         fitPolicy: widget.fitPolicy,
-        preventLinkNavigation: widget.preventLinkNavigation);
+        preventLinkNavigation: widget.preventLinkNavigation,
+        scrollHandle: widget.scrollHandle);
   }
 
   final bool? enableSwipe;
@@ -215,7 +219,8 @@ class _PDFViewSettings {
   final FitPolicy? fitPolicy;
   final bool? fitEachPage;
   final bool? preventLinkNavigation;
-
+  final bool? scrollHandle;
+  
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'enableSwipe': enableSwipe,
